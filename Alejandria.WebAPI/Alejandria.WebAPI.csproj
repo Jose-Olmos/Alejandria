@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Devon4Net.Infrastructure.WebAPI" Version="3.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Alejandria.WebAPI.Implementation\Alejandria.WebAPI.Implementation.csproj" />
+  </ItemGroup>
+
+</Project>
