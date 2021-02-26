@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Alejandria.WebAPI.Implementation.Data.Database;
+using Devon4Net.Domain.UnitOfWork.Common;
+using Devon4Net.Domain.UnitOfWork.Enums;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,9 +16,15 @@ namespace Alejandria.WebAPI.Implementation.Configure
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection SetupDevonDependencyInjection(this IServiceCollection services, IConfiguration _)
+        public static IServiceCollection SetupDevonDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
-            // Now is blank as the project does not use devon yet
+            services.SetUpDatabases(configuration);
+            return services;
+        }
+
+        private static IServiceCollection SetUpDatabases(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.SetupDatabase<AlejandriaContext>(configuration, "Alejandria", DatabaseType.PostgreSQL);
             return services;
         }
     }

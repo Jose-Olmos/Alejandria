@@ -6,8 +6,19 @@
 
   <ItemGroup>
     <PackageReference Include="Devon4Net.Infrastructure.Log" Version="3.1.10" />
+    <PackageReference Include="Devon4Net.Infrastructure.UnitOfWork" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.11" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\RepositoryInterfaces\" />
+    <Folder Include="Domain\" />
   </ItemGroup>
 
 </Project>
