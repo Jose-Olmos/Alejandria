@@ -1,11 +1,10 @@
 ﻿using Alejandria.WebAPI.Implementation.Data.Database;
 using Devon4Net.Domain.UnitOfWork.Common;
 using Devon4Net.Domain.UnitOfWork.Enums;
+using Devon4Net.Infrastructure.Common.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
 namespace Alejandria.WebAPI.Implementation.Configure
 {
@@ -19,6 +18,13 @@ namespace Alejandria.WebAPI.Implementation.Configure
         public static IServiceCollection SetupDevonDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.SetUpDatabases(configuration);
+
+            var assemblyToScan = Assembly.GetAssembly(typeof(DevonConfiguration));
+
+            services.RegisterAssemblyPublicNonGenericClasses(assemblyToScan)
+                .Where(x => x.Name.EndsWith("Repository"))
+                .AsPublicImplementedInterfaces();
+
             return services;
         }
 
