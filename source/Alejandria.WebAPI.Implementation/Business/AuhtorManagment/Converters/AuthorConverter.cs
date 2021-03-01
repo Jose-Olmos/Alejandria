@@ -1,14 +1,11 @@
 ﻿using Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos;
 using Alejandria.WebAPI.Implementation.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Converters
 {
     internal static class AuthorConverter
     {
-        public static Author ToAuthor(this CreateAuthorRequest request) => new Author
+        public static Author ToAuthor(this CreateAuthorRequestDto request) => new Author
         {
             Email = request.Email,
             Name = request.Name,
@@ -16,7 +13,7 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Converters
             Surname = request.Surname
         };
 
-        public static AuthorResponse ToAuthorResponse(this Author author) => new AuthorResponse
+        public static AuthorResponseDto ToAuthorResponse(this Author author) => new AuthorResponseDto
         {
             Id = author.Id,
             Email = author.Email,

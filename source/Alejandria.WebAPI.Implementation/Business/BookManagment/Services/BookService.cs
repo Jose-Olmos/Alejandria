@@ -1,5 +1,5 @@
-﻿using Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Converters;
-using Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos;
+﻿using Alejandria.WebAPI.Implementation.Business.Common.Converters;
+using Alejandria.WebAPI.Implementation.Business.Common.Dtos;
 using Alejandria.WebAPI.Implementation.Data.Database;
 using Alejandria.WebAPI.Implementation.Data.RepositoryInterfaces;
 using Devon4Net.Domain.UnitOfWork.Service;
@@ -20,7 +20,7 @@ namespace Alejandria.WebAPI.Implementation.Business.BookManagment.Services
             _bookRepository = UoW.Repository<IBookRepository>();
         }
 
-        public async Task<IEnumerable<BookResponse>> GetBooksByTitle(string bookTitle)
+        public async Task<IEnumerable<BookResponseDto>> GetBooksByTitle(string bookTitle)
         {
             Devon4NetLogger.Debug($"Entering GetBooksByTitle on BookService with title : {bookTitle}");
             

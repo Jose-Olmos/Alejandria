@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos
 {
-    public class AuthorResponse
+    public class AuthorResponseDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

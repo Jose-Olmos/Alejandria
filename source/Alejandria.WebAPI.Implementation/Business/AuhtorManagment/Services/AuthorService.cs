@@ -1,6 +1,8 @@
 ﻿using Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Converters;
 using Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos;
 using Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Exceptions;
+using Alejandria.WebAPI.Implementation.Business.Common.Converters;
+using Alejandria.WebAPI.Implementation.Business.Common.Dtos;
 using Alejandria.WebAPI.Implementation.Data.Database;
 using Alejandria.WebAPI.Implementation.Data.Entities;
 using Alejandria.WebAPI.Implementation.Data.RepositoryInterfaces;
@@ -25,7 +27,7 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
             _bookRepository = UoW.Repository<IBookRepository>();
         }
 
-        public async Task<AuthorResponse> CreateAuthor(CreateAuthorRequest request)
+        public async Task<AuthorResponseDto> CreateAuthor(CreateAuthorRequestDto request)
         {
             Devon4NetLogger.Debug("Entering CreateAuthor book on AuhtorService");
 
@@ -43,7 +45,7 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
             return await _authorRepository.Delete(author).ConfigureAwait(false);
         }
 
-        public async Task<IEnumerable<AuthorResponse>> GetAuhtors()
+        public async Task<IEnumerable<AuthorResponseDto>> GetAuhtors()
         {
             Devon4NetLogger.Debug("Entering GetAuhtors book on AuhtorService");
 
@@ -51,7 +53,7 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
             return authors.Select(author => author.ToAuthorResponse());
         }
 
-        public async Task<BookResponse> PublishBook(Guid authorId, PublishBookRequest request)
+        public async Task<BookResponseDto> PublishBook(Guid authorId, PublishBookRequestDto request)
         {
             Devon4NetLogger.Debug("Entering Publish book on AuhtorService");
 

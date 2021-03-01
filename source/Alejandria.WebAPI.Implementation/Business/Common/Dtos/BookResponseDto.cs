@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos
+namespace Alejandria.WebAPI.Implementation.Business.Common.Dtos
 {
-    public class BookResponse
+    public class BookResponseDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

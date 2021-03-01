@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos
+﻿namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Dtos
 {
-    public class CreateAuthorRequest
+    public class CreateAuthorRequestDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }
