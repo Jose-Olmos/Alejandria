@@ -25,6 +25,10 @@ namespace Alejandria.WebAPI.Implementation.Configure
                 .Where(x => x.Name.EndsWith("Repository"))
                 .AsPublicImplementedInterfaces();
 
+            services.RegisterAssemblyPublicNonGenericClasses(assemblyToScan)
+                .Where(x => x.Name.EndsWith("Service"))
+                .AsPublicImplementedInterfaces();
+
             return services;
         }
 
