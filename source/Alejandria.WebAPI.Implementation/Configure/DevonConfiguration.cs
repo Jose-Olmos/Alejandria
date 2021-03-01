@@ -34,7 +34,7 @@ namespace Alejandria.WebAPI.Implementation.Configure
 
         private static IServiceCollection SetUpDatabases(this IServiceCollection services, IConfiguration configuration)
         {
-            services.SetupDatabase<AlejandriaContext>(configuration, "Alejandria", DatabaseType.PostgreSQL);
+            services.SetupDatabase<AlejandriaContext>(configuration, "Alejandria", DatabaseType.PostgreSQL, migrate: true);
             return services;
         }
     }
