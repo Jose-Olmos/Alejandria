@@ -80,13 +80,13 @@ namespace Alejandria.WebAPI.Implementation.Data.Database
                 entity.HasOne(d => d.AuthorNavigation)
                     .WithMany(p => p.AuthorBook)
                     .HasForeignKey(d => d.Author)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("author_books_fk_1");
 
                 entity.HasOne(d => d.BookNavigation)
                     .WithMany(p => p.AuthorBook)
                     .HasForeignKey(d => d.Book)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("author_books_fk");
             });
 

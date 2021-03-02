@@ -53,13 +53,13 @@ namespace Alejandria.WebAPI.Implementation.Data.Migrations
                         column: x => x.author,
                         principalTable: "author",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "author_books_fk",
                         column: x => x.book,
                         principalTable: "book",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
