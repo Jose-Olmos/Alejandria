@@ -20,11 +20,13 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
     {
         private readonly IAuthorRepository _authorRepository;
         private readonly IBookRepository _bookRepository;
+        private readonly IAuthorBookRepository _authorBookRepository;
 
         public AuthorService(IUnitOfWork<AlejandriaContext> unitOfWork): base(unitOfWork)
         {
-            _authorRepository = UoW.Repository<IAuthorRepository>();
-            _bookRepository = UoW.Repository<IBookRepository>();
+            _authorRepository = UoW.Repository<IAuthorRepository, Author>();
+            _bookRepository = UoW.Repository<IBookRepository, Book>();
+            _authorBookRepository = UoW.Repository<IAuthorBookRepository, AuthorBook>();
         }
 
         public async Task<AuthorResponseDto> CreateAuthor(CreateAuthorRequestDto request)
@@ -61,8 +63,8 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
             if (author == null) throw new AuthorNotFoundException();
 
             Book book;
-            using (var transaction = await UoW.BeginTransaction().ConfigureAwait(false))
-            {
+            // using (var transaction = await UoW.BeginTransaction().ConfigureAwait(false))
+            // {
                 book = await _bookRepository.Create(request.ToBook()).ConfigureAwait(false);
                 
                 var authorBook = new AuthorBook
@@ -72,11 +74,10 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
                     PublishDate = DateTime.Now,
                     ValidityDate = DateTime.Now.AddYears(1)
                 };
-                author.AuthorBook.Add(authorBook);
-                await _authorRepository.Update(author).ConfigureAwait(false);
+                await _authorBookRepository.Create(authorBook).ConfigureAwait(false);
 
-                await transaction.CommitAsync().ConfigureAwait(false);
-            }
+            //     await transaction.CommitAsync().ConfigureAwait(false);
+            // }
 
             return book.ToBookResponse();
         }
