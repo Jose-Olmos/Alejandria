@@ -1,12 +1,22 @@
 version: "3.0" 
 services:
-  # web:
-  #   build:
-  #     context: ./source
-  #     dockerfile: ./Alejandria.WebAPI/Dockerfile
-  #     ports:
-  #       - 5000:5000
-  #       - 5001:5001
+  web-api:
+    build:
+      context: ./source
+      dockerfile: ./Alejandria.WebAPI/Dockerfile
+    ports:
+      - 5000:5000
+      - 5001:5001
+    depends_on:
+      - "db"
+      - "notification-service"
+  notification-service:
+    build:
+      context: ./source
+      dockerfile: ./Alejandria.NotificationService/Dockerfile
+    ports:
+      - 4000:4000
+      - 4001:4001
   db:
     image: postgres
     ports:
