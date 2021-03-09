@@ -1,3 +1,4 @@
+using Devon4Net.Application.WebAPI.Configuration.Application;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +22,7 @@ namespace Alejandria.NotificationService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.InitializeDevonFw();
                 });
     }
 }
