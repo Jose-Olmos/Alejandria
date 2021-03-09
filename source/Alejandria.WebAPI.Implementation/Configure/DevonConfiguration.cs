@@ -1,4 +1,5 @@
-﻿using Alejandria.WebAPI.Implementation.Data.Database;
+﻿using Alejandria.WebAPI.Implementation.Business.NewsFeedManagment.Handlers;
+using Alejandria.WebAPI.Implementation.Data.Database;
 using Devon4Net.Domain.UnitOfWork.Common;
 using Devon4Net.Domain.UnitOfWork.Enums;
 using Devon4Net.Infrastructure.Common.Helpers;
@@ -17,7 +18,8 @@ namespace Alejandria.WebAPI.Implementation.Configure
         /// <returns></returns>
         public static IServiceCollection SetupDevonDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
-            services.SetUpDatabases(configuration);
+            services.SetupDatabases(configuration);
+            services.SetupHttpHandlers();
 
             var assemblyToScan = Assembly.GetAssembly(typeof(DevonConfiguration));
 
@@ -32,9 +34,16 @@ namespace Alejandria.WebAPI.Implementation.Configure
             return services;
         }
 
-        private static IServiceCollection SetUpDatabases(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection SetupDatabases(this IServiceCollection services, IConfiguration configuration)
         {
             services.SetupDatabase<AlejandriaContext>(configuration, "Alejandria", DatabaseType.PostgreSQL, migrate: true);
+            return services;
+        }
+
+        private static IServiceCollection SetupHttpHandlers(this IServiceCollection services)
+        {
+            services.AddTransient<ISendFeedSyncHandler, SendFeedSyncHandler>();
+
             return services;
         }
     }
