@@ -5,8 +5,5 @@ using System.Threading.Tasks;
 
 namespace Alejandria.WebAPI.Implementation.Data.RepositoryInterfaces
 {
-    public interface IAuthorRepository : IRepository<Author> 
-    {
-        Task<Author> GetAuthorAndBooksById(Guid authorId);
-    }
+    public interface IAuthorRepository : IRepository<Author>  { }
 }

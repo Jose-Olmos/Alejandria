@@ -59,7 +59,7 @@ namespace Alejandria.WebAPI.Implementation.Business.AuhtorManagment.Services
         {
             Devon4NetLogger.Debug("Entering Publish book on AuhtorService");
 
-            var author = await _authorRepository.GetAuthorAndBooksById(authorId).ConfigureAwait(false);
+            var author = await _authorRepository.GetFirstOrDefault(aut => aut.Id == authorId).ConfigureAwait(false);
             if (author == null) throw new AuthorNotFoundException();
 
             Book book;

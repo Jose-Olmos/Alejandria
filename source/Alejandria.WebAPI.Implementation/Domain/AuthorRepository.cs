@@ -11,13 +11,5 @@ namespace Alejandria.WebAPI.Implementation.Domain
     public class AuthorRepository : Repository<Author>, IAuthorRepository
     {
         public AuthorRepository(AlejandriaContext context) : base(context, true)  { }
-
-        public async Task<Author> GetAuthorAndBooksById(Guid authorId)
-        {
-            var includeFields = new [] { nameof(Author.AuthorBook) };
-            var authors = await Get(includeFields, author => author.Id == authorId).ConfigureAwait(false);
-
-            return authors.FirstOrDefault();
-        }
     }
 }
